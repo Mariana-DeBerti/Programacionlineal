@@ -1,44 +1,271 @@
-echo "# pruebamdb" >> README.md 
-git init 
-git add README.md 
-git commit -m "primer commit" 
-git branch -M main 
-git remote add origin https://github.com/Mariana-DeBerti/pruebamdb.git
- git push -u origin main
 <!doctype html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Simulacion monte carlo</title>
 
-		<title>Programacion lineal</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/black.css">
+</head>
 
-		<link rel="stylesheet" href="reset.css">
-		<link rel="stylesheet" href="reveal.css">
-		<link rel="stylesheet" href="black.css">
+<body>
+<div class="reveal">
+<div class="slides">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section><p>Programación lineal</p><p> Mariana De Berti -2026 </p></section>
-				<section data-visibility="hidden"> <p><b>¿Qué es la programación lineal?</b></p><p>Es una técnica matemática para maximizar o minimizar una función lineal sujeta a restricciones lineales.</p></section>
-				<section><p><b> Elementos de la programación lineal</b></p><p><b>Función objetivo:</b> Expresion que se desea maximizar o minimizar</p><p><b> Variables de decisión:</b> Desconocidas que se determinarán en el modelo</p><p><b> Restricciones:</b> Condiciones que limitan las decisiones</p></section>
-			</div>
-		</div>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
-				showHiddenSlides: true,
+<section>
+  <h2> Programación lineal</h2>
+  <p> Mariana De Berti - 2026</p>
+</section>
 
-				slideNumber: 'c/t',
+<section>
+  <section>
+   <h4>¿Qué es la simulacion de Monte Carlo?</h4>
+  <p>Es una técnica estadística que predice los posibles resultados de un evento incierto mediante el uso de muestreo aleatorio </p>
+  <p>Al simular miles de escenarios con variables aleatorias, permite evaluar riesgos y posibilidades</p>
+  </section>
+  <section id="fragmentos">
+    <h3>Se basa en lo siguiente:</h3>
+   <ol>
+     <li class="fragment">Definir un modelo matemático que representa el sistema que se quiere analizar</li>
+     <li class="fragment"> Generar números aleatorios para simular las variables de entrada del modelo</li>
+     <li class="fragment">Ejecutar el modelo con los valores aleatorios y obtener resultados</li>
+     <li class="fragment"> Repetir el proces miles o millones de veces para obtener una distribución de resultados posibles</li>
+   </ol>
+  </section>
+  <Section>
+     <h4>¿Para qué se utiliza?</h4>
+    <ul>
+    <li>Evaluar riesgos, incertidumbres en proyectos y decisiones</li>
+      <li>Analizar sistemas complejos y no lineales</li>
+      <li>Estimar probabilidades y valores esperados</li>
+      <li>Optimizar procesos y sistemas</li>
+    </ul>
+  </Section>
+</section>
+<section>
+  <h4>Ejemplo </h4>
+  <h5> Optimo agronómico vs. óptimo económico</h5>
+</section>
+  <section>
+  <h4>Optimo agronómico vs económico </h4>
+  <p><b> Óptimo agronómico:</b> Es la dosis de fertilizante que maximiza el rendimiento del cultivo</p>
+  <p><b>Óptimo económico:</b> Es la dosis que maximiza la ganancia, considerando:</p>
+  <ul>
+    <li> Costo del fertilizante</li>
+    <li> Precio del cultivo</li>
+    <li> Rendimiento obtenido</li>
+    <p>Más producción no siempre es sinónimo de mayor ganancia.</p>
+  </ul>
+  </section>
+  <section>
+    <p>El rendimiento del cultivo depende de variables inciertas tales como: </p>
+    <ul>
+      <li> Clima </li>
+      <li> Calidad del suelo </li>
+      <li> Precipitaciones </li>
+      <li> Respuesta del cultivo</li>
+      </ul>
+      <p>No podemos predecir con exactitud el rendimiento final. </p>
+      <p>Necesitamos estimar qué nivel de fertilización maximiza la producción (óptimo agronómico) y la ganancia (óptimo económico= </p>
+  </section>
+  <section>
+    <h4>Objetivo de la simulación</h4>
+    <p>Simular distintos escenarios para estimar:</p>
+    <ul>
+      <li>El rendimiento esperado del cultivo</li>
+      <li>La dosis de fertilizante que maximiza la producción</li>
+      <li>La dosis que maximiza la ganancia económica</li>
+    </ul>
+    <p> Comparar el óptimo agronómico con el óptimo económico</p>
+  </section>
+<section>
+  <h4>Dosis de fertilizante en trigo</h4>
+  <p>Supongamos que evaluamos tres dosis de fertilizantes:</p>
+  <table>
+    <tr>
+      <td> Dosis (Kg/ha) </td>
+      <td>Rendimiento esperado (tn/ha)</td>
+    </tr>
+    <tr>
+      <td>50</td>
+      <td>2,8 - 3,6</td>
+    </tr>
+    <tr>
+      <td>100</td>
+      <td>3,5 - 4,5</td>
+    </tr>
+    <tr>
+      <td>150</td>
+      <td>3,8 - 4,8</td>
+    </tr>
+  </table>
+  <p>Usaremos valores aleatorios dentro de estos rangos</p>
+</section>
+  <section>
+    <section>
+    <h4>Simulación de escenatios</h4>
+    <p>simulamos 10 escenarios climáticos</p>
+    </section>
+      <section>
+    <table>
+      <tr>
+        <td><b>Escenario</b></td>
+        <td><b>50 kg</b></td>
+        <td><b>100 kg</b></td>
+        <td><b>150kg</b></td>     
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>3,1</td>
+        <td>4,2</td>
+        <td>4.4</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>2,9</td>
+        <td>3,7</td>
+        <td>4,1</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>3,5</td>
+        <td>4,3</td>
+        <td>4,6</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>3,0</td>
+        <td>3,8</td>
+        <td>4,0</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>3,2</td>
+        <td>4,1</td>
+        <td>4,5</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>2,8</td>
+        <td>3,6</td>
+        <td>3,9</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>3,4</td>
+        <td>4,4</td>
+        <td>4,7</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>3,3</td>
+      <td>4,0</td>
+        <td>4,3</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>3,0</td>
+        <td>3,9</td>
+        <td>4,2</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>3,6</td>
+        <td>4,5</td>
+        <td>4,8</td>
+      </tr>
+    </table>
+      <p>Cada fila representa un posible año agrícola</p>
+    </section>
+  </section>
+  <section>
+    <h4>Promedio de rendimientos</h4>
+    <p>Rendimiento esperado.</p>
+    <table>
+      <tr>
+        <td><b>Dosis</b></td>
+        <td><b>Rendimiento promedio</b></td>
+      </tr>
+      <tr>
+      <td>50 kg</td>
+      <td>3,18 th/ha</td>
+      </tr>
+      <tr>
+        <td>100 kg</td>
+        <td>4,05 tn/ha</td>
+      </tr>
+      <tr>
+        <td> 150 kg</td>
+        <td>4,35 tn/ha</td>
+      </tr>
+    </table>
+    <p>El óptimo egronómico sigue siendo 150 kg/ha</p>
+  </section>
+  <section>
+    <section>
+    <h4>Cálculo econónmico con incertidumbre</h4>
+    <p>Datos económicos</p>
+    <ul>
+      <li> Precio del trigo: 200USD/tn</li>
+      <li>Costo fertilizante: 1USD/kg</li>
+    </ul>
+    </section>
+      <section>
+        <p><b>Ganancia esperada</b></p>
+        <table>
+          <tr>
+            <td><b>Dosis</b></td>
+            <td><b>Ingreso promedio</b></td>
+            <td><b>Costo</b></td>
+            <td><b>Ganancia</b></td>
+          </tr>
+          <tr>
+            <td>50</td>
+            <td>636</td>
+            <td>50</td>
+            <td>586</td>
+          </tr>
+          <tr>
+            <td>100</td>
+            <td>810</td>
+            <td>100</td>
+            <td>710</td>
+          </tr>
+          <tr>
+            <td>150</td>
+            <td>870</td>
+            <td>150</td>
+            <td>720</td>
+          </tr>
+        </table>
+      </section>
+  </section>
+  <section>
+    <h4>Analisis del riesgo</h4>
+    <h5>¿Qué muestra la simulación?</h5>
+    <p>Aunque 150kg de fertilizante tiene mayor ganancia promedio:</p>
+    <ul>
+      <li>En algunos escenarios, la diferencia es mínima.</li>
+      <li>El mayor costo aumenta el riesgo si el rendimiento baja</li>
+    </ul>
+    <p>Monte Carlo permite evaluar no solo el promedio, sino también el riesgo</p>
+  </section>
+  <section>
+    <h4>Conclusion del ejemplo</h4>
+    <p> El uso de simulaciones permite:</p>
+    <ul>
+      <li>Considerar la variabilidad climática</li>
+      <li>Estimar ganancias esperadas</li>
+      <li>Evaluar riesgos econónmicos</li>
+    </ul>
+    <p><b>La mejor decision no depende solo del rendimiento máximo, sino del equilibrio entre ganancia y riesgo</b></p>
+  </section>
+</div>
+</div>
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script>
+Reveal.initialize({ hash: true });
+</script>
+</body>
+</html>
