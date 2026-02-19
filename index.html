@@ -143,6 +143,79 @@
     <p>Solución óptima: sembrar 100 ha de soja</p>
   </section>
   <section>
+  <h3>Región factible y solución óptima</h3>
+  <canvas id="graficoPL"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('graficoPL').getContext('2d');
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        datasets: [
+          {
+            label: 'Restricción Tierra: x + y = 100',
+            data: [
+              {x: 0, y: 100},
+              {x: 100, y: 0}
+            ],
+            fill: false,
+            tension: 0
+          },
+          {
+            label: 'Restricción Presupuesto: 8x + 5y = 600',
+            data: [
+              {x: 0, y: 120},
+              {x: 75, y: 0}
+            ],
+            fill: false,
+            tension: 0
+          },
+          {
+            label: 'Región factible',
+            data: [
+              {x: 0, y: 0},
+              {x: 0, y: 100},
+              {x: 33.3, y: 66.7},
+              {x: 75, y: 0}
+            ],
+            fill: true,
+            tension: 0
+          },
+          {
+            label: 'Solución óptima (0,100)',
+            data: [{x: 0, y: 100}],
+            pointRadius: 6,
+            showLine: false
+          }
+        ]
+      },
+      options: {
+        scales: {
+          x: {
+            type: 'linear',
+            title: {
+              display: true,
+              text: 'Hectáreas de maíz (x)'
+            },
+            min: 0,
+            max: 100
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Hectáreas de soja (y)'
+            },
+            min: 0,
+            max: 120
+          }
+        }
+      }
+    });
+  </script>
+</section>
+  <section>
     <h4>Interpretación</h4>
     <ul>
       <li> La soja tiene mayor margen por hectárea</li>
