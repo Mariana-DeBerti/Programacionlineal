@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Simulacion monte carlo</title>
+  <title>Programación lineal</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/black.css">
@@ -19,247 +19,138 @@
 
 <section>
   <section>
-   <h4>¿Qué es la simulacion de Monte Carlo?</h4>
-  <p>Es una técnica estadística que predice los posibles resultados de un evento incierto mediante el uso de muestreo aleatorio </p>
-  <p>Al simular miles de escenarios con variables aleatorias, permite evaluar riesgos y posibilidades</p>
+   <h4>¿Qué es la programación lineal?</h4>
+  <p>Es una técnica matemática que permite optimizar (maximizar o minimizar) una función objetivo sujeta a restricciones. </p>
+  <p>Se usa para tomar decisiones eficientes cuando los recursos son limitados</p>
   </section>
   <section id="fragmentos">
     <h3>Se basa en lo siguiente:</h3>
    <ol>
-     <li class="fragment">Definir un modelo matemático que representa el sistema que se quiere analizar</li>
-     <li class="fragment"> Generar números aleatorios para simular las variables de entrada del modelo</li>
-     <li class="fragment">Ejecutar el modelo con los valores aleatorios y obtener resultados</li>
-     <li class="fragment"> Repetir el proces miles o millones de veces para obtener una distribución de resultados posibles</li>
+     <li class="fragment">Definir el problema, lo que queremos optimizar (Mazimizar ganancias, minimizar costos, optimizar el uso de recursos)</li>
+     <li class="fragment"> Identificar las variables de decisión, son las incognitas del problema (Representa lo que podemos decidir) </li>
+     <li class="fragment">Formular la función objetivo, es la expresión matemática que queremos optimizar(debe ser lineal)</li>
+     <li class="fragment"> Estableces las restricciones, representan los límites reales del problema8los recursos limitados) </li>
+     <li class="fragment"> Condiciones de no negatividad (las variables no pueden ser negativas) </li>
+     <li class="fragment"> Resolver el modelo (Método gráfico, método simplex, software)</li>
+    <li class="fragment"> Analizar e interpretar la solución (¿tiene sentido?¿Cumple restricciones?¿Es aplicable en la prática?  </li>
    </ol>
   </section>
   <Section>
      <h4>¿Para qué se utiliza?</h4>
     <ul>
-    <li>Evaluar riesgos, incertidumbres en proyectos y decisiones</li>
-      <li>Analizar sistemas complejos y no lineales</li>
-      <li>Estimar probabilidades y valores esperados</li>
-      <li>Optimizar procesos y sistemas</li>
+      <li>Tomar decisiones óptimas cuando hay recursos limitados y varias alternativas</li>
+      <li>Elegir la mejor opción usando matemáticas</li>
+      <li>En industrias se utiliza para la planificación de producción y asignación de materias primas</li>
+      <li>En logística se utiliza para la optimización de rutas y distribución de mercadería</li>
     </ul>
   </Section>
 </section>
 <section>
   <h4>Ejemplo </h4>
-  <h5> Optimo agronómico vs. óptimo económico</h5>
+  <h5> Planificación de siembra</h5>
 </section>
   <section>
-  <h4>Optimo agronómico vs económico </h4>
-  <p><b> Óptimo agronómico:</b> Es la dosis de fertilizante que maximiza el rendimiento del cultivo</p>
-  <p><b>Óptimo económico:</b> Es la dosis que maximiza la ganancia, considerando:</p>
-  <ul>
-    <li> Costo del fertilizante</li>
-    <li> Precio del cultivo</li>
-    <li> Rendimiento obtenido</li>
-    <p>Más producción no siempre es sinónimo de mayor ganancia.</p>
-  </ul>
+  <p>Un productor dispone de 100 hectáreas y un presupuesto de $60.000 para sembrar maiz y soja</p>
+  <p><b>Datos:</b></p>
+    <table>
+    <tr>
+      <td><b> Cultivo</b></td>
+      <td><b>Rinde(tn/ha)</b></td>
+      <td><b>Precio ($/tn)</b></td>
+      <td><b>Costo ($/ha)</b></td>
+    </tr>
+      <tr>
+        <td>Maíz</td>
+        <td>8</td>
+        <td>150</td>
+        <td>800</td>
+      </tr>
+      <tr>
+        <td>Soja</td>
+        <td>3</td>
+        <td>350</td>
+        <td>500</td>
+      </tr>
+  </table>
   </section>
   <section>
-    <p>El rendimiento del cultivo depende de variables inciertas tales como: </p>
+    <h4>Ingreso y margen por hectárea</h4>
+    <p>Ingreso por hd</p>
     <ul>
-      <li> Clima </li>
-      <li> Calidad del suelo </li>
-      <li> Precipitaciones </li>
-      <li> Respuesta del cultivo</li>
-      </ul>
-      <p>No podemos predecir con exactitud el rendimiento final. </p>
-      <p>Necesitamos estimar qué nivel de fertilización maximiza la producción (óptimo agronómico) y la ganancia (óptimo económico= </p>
-  </section>
-  <section>
-    <h4>Objetivo de la simulación</h4>
-    <p>Simular distintos escenarios para estimar:</p>
-    <ul>
-      <li>El rendimiento esperado del cultivo</li>
-      <li>La dosis de fertilizante que maximiza la producción</li>
-      <li>La dosis que maximiza la ganancia económica</li>
+      <li> Maíz: 8*150 =  $ 1200  </li>
+      <li> Soja: 3*350 = $1050 </li>
     </ul>
-    <p> Comparar el óptimo agronómico con el óptimo económico</p>
+      <p>Margen bruto por ha</p>
+      <p>Ingreso - costo: </p>
+    <ul>
+      <li> Maíz: 1200 - 800 = 400 $/ha</li>
+      <li> Soja: 1050 -500 = 550 $/ha</li>
+    </ul>
+  </section>
+  <section>
+    <h4>Formulación matemática</h4>
+    <p> Variables </p>
+    <ul>
+      <li> x = ha de maíz</li>
+      <li> y = ha de soja </li>
+    </ul>
+    <p> Función objetivo: Maximizar margen</p>
+    <p> Z= 400x + 550 y</p>
   </section>
 <section>
-  <h4>Dosis de fertilizante en trigo</h4>
-  <p>Supongamos que evaluamos tres dosis de fertilizantes:</p>
-  <table>
-    <tr>
-      <td> Dosis (Kg/ha) </td>
-      <td>Rendimiento esperado (tn/ha)</td>
-    </tr>
-    <tr>
-      <td>50</td>
-      <td>2,8 - 3,6</td>
-    </tr>
-    <tr>
-      <td>100</td>
-      <td>3,5 - 4,5</td>
-    </tr>
-    <tr>
-      <td>150</td>
-      <td>3,8 - 4,8</td>
-    </tr>
-  </table>
+  <h4>Restricciones</h4>
+  <p><b>Tierra disponible</b></p>
+  <p> x + y <= 100</p>
+  <p><b>Presupuestp</b></p>
+  <p>800x + 500y <= 60000 </p>
+  <p><b>No negatividad</b></p>
+  <p>x,y >= 0 </p>
   <p>Usaremos valores aleatorios dentro de estos rangos</p>
 </section>
-  <section>
     <section>
-    <h4>Simulación de escenatios</h4>
-    <p>simulamos 10 escenarios climáticos</p>
+    <h4>Resolución</h4>
+    <h5>Método gráfico </h5>
+    <p>Simplificamos presupuesto: 8x + 5y <= 600 </p>
     </section>
-      <section>
+  </section>
+  <section>
+    <h4>Evaluación</h4>
     <table>
       <tr>
-        <td><b>Escenario</b></td>
-        <td><b>50 kg</b></td>
-        <td><b>100 kg</b></td>
-        <td><b>150kg</b></td>     
+        <td><b>Punto</b></td>
+        <td><b>Maíz</b></td>
+        <td><b>Soja</b></td>
+        <td><b>Margen</b></td>
       </tr>
       <tr>
-        <td>1</td>
-        <td>3,1</td>
-        <td>4,2</td>
-        <td>4.4</td>
+      <td>A</td>
+      <td>0</td>
+      <td>100</td>
+      <td>55.000</td>
       </tr>
       <tr>
-        <td>2</td>
-        <td>2,9</td>
-        <td>3,7</td>
-        <td>4,1</td>
+        <td>B</td>
+        <td>75</td>
+        <td>0</td>
+        <td>30.000</td>
       </tr>
       <tr>
-        <td>3</td>
-        <td>3,5</td>
-        <td>4,3</td>
-        <td>4,6</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>3,0</td>
-        <td>3,8</td>
-        <td>4,0</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>3,2</td>
-        <td>4,1</td>
-        <td>4,5</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td>2,8</td>
-        <td>3,6</td>
-        <td>3,9</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td>3,4</td>
-        <td>4,4</td>
-        <td>4,7</td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td>3,3</td>
-      <td>4,0</td>
-        <td>4,3</td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td>3,0</td>
-        <td>3,9</td>
-        <td>4,2</td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td>3,6</td>
-        <td>4,5</td>
-        <td>4,8</td>
+        <td> C</td>
+        <td> 33,3</td>
+        <td>66,7</td>
+        <td>51.685</td>
       </tr>
     </table>
-      <p>Cada fila representa un posible año agrícola</p>
-    </section>
+    <p>Solución óptima: sembrar 100 ha de soja</p>
   </section>
   <section>
-    <h4>Promedio de rendimientos</h4>
-    <p>Rendimiento esperado.</p>
-    <table>
-      <tr>
-        <td><b>Dosis</b></td>
-        <td><b>Rendimiento promedio</b></td>
-      </tr>
-      <tr>
-      <td>50 kg</td>
-      <td>3,18 th/ha</td>
-      </tr>
-      <tr>
-        <td>100 kg</td>
-        <td>4,05 tn/ha</td>
-      </tr>
-      <tr>
-        <td> 150 kg</td>
-        <td>4,35 tn/ha</td>
-      </tr>
-    </table>
-    <p>El óptimo egronómico sigue siendo 150 kg/ha</p>
-  </section>
-  <section>
-    <section>
-    <h4>Cálculo econónmico con incertidumbre</h4>
-    <p>Datos económicos</p>
+    <h4>Interpretación</h4>
     <ul>
-      <li> Precio del trigo: 200USD/tn</li>
-      <li>Costo fertilizante: 1USD/kg</li>
+      <li> La soja tiene mayor margen por hectárea</li>
+      <li> El presupuesto limita la expansión del maíz</li>
+      <li> El modelo sugiere especialización según rentabilidad</li>
     </ul>
     </section>
-      <section>
-        <p><b>Ganancia esperada</b></p>
-        <table>
-          <tr>
-            <td><b>Dosis</b></td>
-            <td><b>Ingreso promedio</b></td>
-            <td><b>Costo</b></td>
-            <td><b>Ganancia</b></td>
-          </tr>
-          <tr>
-            <td>50</td>
-            <td>636</td>
-            <td>50</td>
-            <td>586</td>
-          </tr>
-          <tr>
-            <td>100</td>
-            <td>810</td>
-            <td>100</td>
-            <td>710</td>
-          </tr>
-          <tr>
-            <td>150</td>
-            <td>870</td>
-            <td>150</td>
-            <td>720</td>
-          </tr>
-        </table>
-      </section>
-  </section>
-  <section>
-    <h4>Analisis del riesgo</h4>
-    <h5>¿Qué muestra la simulación?</h5>
-    <p>Aunque 150kg de fertilizante tiene mayor ganancia promedio:</p>
-    <ul>
-      <li>En algunos escenarios, la diferencia es mínima.</li>
-      <li>El mayor costo aumenta el riesgo si el rendimiento baja</li>
-    </ul>
-    <p>Monte Carlo permite evaluar no solo el promedio, sino también el riesgo</p>
-  </section>
-  <section>
-    <h4>Conclusion del ejemplo</h4>
-    <p> El uso de simulaciones permite:</p>
-    <ul>
-      <li>Considerar la variabilidad climática</li>
-      <li>Estimar ganancias esperadas</li>
-      <li>Evaluar riesgos econónmicos</li>
-    </ul>
-    <p><b>La mejor decision no depende solo del rendimiento máximo, sino del equilibrio entre ganancia y riesgo</b></p>
-  </section>
 </div>
 </div>
 
