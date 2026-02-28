@@ -24,12 +24,20 @@
     .reveal strong {
       color: #6D4C41;
     }
-    .button{
-      background-color: #2b7cff;
-      color: white;
-      padding: 8px 10px;
-      border-radius: 8px;
+    .reveal a.button{
+      background-color: linear-gradient(135deg, #2b7cff, $5fac8ff);
+      color: white !important;;
+      padding: 10px 16px;
+      border-radius: 10px;
       text-decoration:none;
+      display: inline-block;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: transform 0,2s, box-shadow 0,2s;
+    }
+    .reveal a.button:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
     }
     /* Tablas */
     .reveal table {
@@ -248,7 +256,7 @@
   </ul>
 </section>
 <section>
-  <h3>Fuentes de consula</h3>
+  <h3>Fuentes de consulta</h3>
   <ul>
     <li> Hamdy A. Taha - Investigación de operaciones (7a.Edicion)  </li>
     <li> Bolsa de cereales - Panorama agrícola semanal <a href="https://www.bolsadecereales.com/imagenes/pass/2026-02/1133-pas202602261.pdf" target="_blank" class="button"> link</a> </li>
