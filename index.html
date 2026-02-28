@@ -2,13 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Programación lineal</title>
+  <title>Programación Lineal</title>
 
   <!-- Reveal -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/white.css">
 
-  <!-- Fuente moderna -->
+  <!-- Fuente -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -17,44 +17,43 @@
       font-size: 28px;
     }
 
-    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+    .reveal h1, .reveal h2, .reveal h3 {
       color: #2E7D32;
     }
 
-    .reveal strong {
-      color: #6D4C41;
-    }
+    .reveal strong { color: #6D4C41; }
+
+    /* Botón */
     .reveal .slides a.button{
       background-color: #2b7cff !important;
       color: #ffffff !important;
-      padding: 8px 10px;
+      padding: 10px 16px;
       border-radius: 10px;
       text-decoration:none !important;
       display: inline-block;
       font-weight: 600;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      transition: transform 0,2s, box-shadow 0,2s;
+      transition: transform .2s, box-shadow .2s;
     }
     .reveal .slides a.button:hover{
       transform: translateY(-2px);
       box-shadow: 0 6px 14px rgba(0,0,0,0.25);
     }
+
     /* Tablas */
     .reveal table {
       border-collapse: collapse;
       width: 100%;
       font-size: 24px;
     }
-
-    .reveal table th {
-      background-color: #A5D6A7;
-    }
-
+    .reveal table th { background-color: #A5D6A7; }
     .reveal table, th, td {
       border: 1px solid #ddd;
       padding: 8px;
       text-align: center;
     }
+
+    .cita { font-size: 0.7em; color: #555; }
   </style>
 </head>
 
@@ -63,38 +62,25 @@
 <div class="slides">
 
 <!-- PORTADA -->
-<section data-background-image="Portada.jpg"> </section>
+<section data-background-image="Portada.jpg"></section>
 
 <!-- DEFINICIÓN -->
 <section>
-  <section>
-    <h3>¿Qué es la programación lineal?</h3>
-    <p>Es una técnica matemática que permite optimizar una función objetivo sujeta a restricciones.</p>
-    <p>Se usa para tomar decisiones eficientes cuando los recursos son limitados.</p>
-  </section>
+  <h3>¿Qué es la programación lineal?</h3>
+  <p>
+    Es una técnica matemática que permite optimizar una función objetivo sujeta a restricciones.
+    <span class="cita">(Taha, 2012)</span>
+  </p>
+  <p>Se usa para tomar decisiones eficientes cuando los recursos son limitados.</p>
+</section>
 
-  <section>
-    <h3>¿En qué se basa?</h3>
-    <ol>
-      <li class="fragment">Definir el problema</li>
-      <li class="fragment">Identificar variables de decisión</li>
-      <li class="fragment">Formular la función objetivo</li>
-      <li class="fragment">Establecer restricciones</li>
-      <li class="fragment">Condiciones de no negatividad</li>
-      <li class="fragment">Resolver el modelo</li>
-      <li class="fragment">Analizar la solución</li>
-    </ol>
-  </section>
-
-  <section>
-    <h3>¿Para qué se utiliza?</h3>
-    <ul>
-      <li class="fragment">Tomar decisiones óptimas con recursos limitados</li>
-      <li class="fragment">Maximizar beneficios o minimizar costos</li>
-      <li class="fragment">Planificación productiva</li>
-      <li class="fragment">Optimización logística</li>
-    </ul>
-  </section>
+<section>
+  <h3>¿Para qué se utiliza?</h3>
+  <ul>
+    <li class="fragment">Maximizar beneficios o minimizar costos</li>
+    <li class="fragment">Planificación productiva</li>
+    <li class="fragment">Optimización logística</li>
+  </ul>
 </section>
 
 <!-- EJEMPLO -->
@@ -108,166 +94,119 @@
   <table>
     <tr>
       <th>Cultivo</th>
-      <th>Rinde (tn/ha)</th>
-      <th>Precio ($/tn)</th>
-      <th>Costo ($/ha)</th>
+      <th>Rinde</th>
+      <th>Precio</th>
+      <th>Costo</th>
     </tr>
-    <tr>
-      <td>Maíz</td>
-      <td>8</td>
-      <td>150</td>
-      <td>800</td>
-    </tr>
-    <tr>
-      <td>Soja</td>
-      <td>3</td>
-      <td>350</td>
-      <td>500</td>
-    </tr>
+    <tr><td>Maíz</td><td>8</td><td>150</td><td>800</td></tr>
+    <tr><td>Soja</td><td>3</td><td>350</td><td>500</td></tr>
   </table>
 </section>
 
 <section>
-  <h3>Ingreso y margen por hectárea</h3>
-
-  <p><strong>Ingreso por ha</strong></p>
+  <h3>Margen por hectárea</h3>
   <ul>
-    <li>Maíz: 8 × 150 = $1200</li>
-    <li>Soja: 3 × 350 = $1050</li>
-  </ul>
-
-  <p><strong>Margen bruto</strong></p>
-  <ul>
-    <li>Maíz: $400/ha</li>
-    <li>Soja: $550/ha</li>
+    <li>Maíz: 8×150 − 800 = <strong>$400</strong></li>
+    <li>Soja: 3×350 − 500 = <strong>$550</strong></li>
   </ul>
 </section>
 
 <section>
   <h3>Formulación matemática</h3>
-  <p><strong>Variables</strong></p>
-  <ul>
-    <li>x = ha de maíz</li>
-    <li>y = ha de soja</li>
-  </ul>
+  <p><strong>Variables:</strong> x = maíz, y = soja</p>
   <p><strong>Maximizar:</strong> Z = 400x + 550y</p>
+  <p><strong>Restricciones:</strong></p>
+  <p>x + y ≤ 100</p>
+  <p>800x + 500y ≤ 60000</p>
+</section>
+
+<!-- CÁLCULOS -->
+<section>
+  <h3>Cálculo del punto óptimo</h3>
+  <p>x + y = 100</p>
+  <p>800x + 500y = 60000</p>
+  <p>y = 100 − x</p>
+  <p>800x + 500(100 − x) = 60000</p>
+  <p>300x = 10000 → x = 33,3</p>
+  <p>y = 66,7</p>
+  <p><strong>Intersección:</strong> (33,3 ; 66,7)</p>
 </section>
 
 <section>
-  <h3>Restricciones</h3>
-  <p>Tierra: x + y ≤ 100</p>
-  <p>Presupuesto: 800x + 500y ≤ 60000</p>
-  <p>No negatividad: x, y ≥ 0</p>
-</section>
-
-<section>
-  <h3>Evaluación</h3>
+  <h3>Evaluación de soluciones</h3>
   <table>
-    <tr>
-      <th>Punto</th>
-      <th>Maíz</th>
-      <th>Soja</th>
-      <th>Margen</th>
-    </tr>
-    <tr>
-      <td>A</td>
-      <td>0</td>
-      <td>100</td>
-      <td>55.000</td>
-    </tr>
-    <tr>
-      <td>B</td>
-      <td>75</td>
-      <td>0</td>
-      <td>30.000</td>
-    </tr>
-    <tr>
-      <td>C</td>
-      <td>33,3</td>
-      <td>66,7</td>
-      <td>51.685</td>
-    </tr>
+    <tr><th>Punto</th><th>Maíz</th><th>Soja</th><th>Margen</th></tr>
+    <tr><td>A</td><td>0</td><td>100</td><td>55.000</td></tr>
+    <tr><td>B</td><td>75</td><td>0</td><td>30.000</td></tr>
+    <tr><td>C</td><td>33,3</td><td>66,7</td><td>51.685</td></tr>
   </table>
-  <p><strong>Solución óptima:</strong> sembrar 100 ha de soja.</p>
+  <p><strong>Solución óptima:</strong> 100 ha de soja.</p>
 </section>
 
 <!-- GRÁFICO -->
 <section>
-  <h3>Región factible y solución óptima</h3>
+  <h3>Región factible</h3>
   <canvas id="graficoPL"></canvas>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     const ctx = document.getElementById('graficoPL').getContext('2d');
-
     new Chart(ctx, {
       type: 'line',
       data: {
         datasets: [
-          {
-            label: 'Tierra: x + y = 100',
-            data: [{x:0,y:100},{x:100,y:0}],
-            borderWidth: 3,
-            fill: false
-          },
-          {
-            label: 'Presupuesto: 8x + 5y = 600',
-            data: [{x:0,y:120},{x:75,y:0}],
-            borderWidth: 3,
-            fill: false
-          },
-          {
-            label: 'Región factible',
-            data: [{x:0,y:0},{x:0,y:100},{x:33.3,y:66.7},{x:75,y:0}],
-            fill: true,
-            borderWidth: 1
-          },
-          {
-            label: 'Óptimo (0,100)',
-            data: [{x:0,y:100}],
-            pointRadius: 6,
-            showLine: false
-          }
+          {label:'Tierra', data:[{x:0,y:100},{x:100,y:0}], borderWidth:3, fill:false},
+          {label:'Presupuesto', data:[{x:0,y:120},{x:75,y:0}], borderWidth:3, fill:false},
+          {label:'Región factible', data:[{x:0,y:0},{x:0,y:100},{x:33.3,y:66.7},{x:75,y:0}], fill:true},
+          {label:'Óptimo', data:[{x:0,y:100}], pointRadius:6, showLine:false}
         ]
       },
-      options: {
-        scales: {
-          x: {
-            type: 'linear',
-            title: { display: true, text: 'Hectáreas de maíz' },
-            min: 0, max: 100
-          },
-          y: {
-            title: { display: true, text: 'Hectáreas de soja' },
-            min: 0, max: 120
-          }
-        }
-      }
+      options:{scales:{x:{type:'linear',min:0,max:100},y:{min:0,max:120}}}
     });
   </script>
+</section>
+
+<!-- CÓDIGO -->
+<section>
+  <h3>Código utilizado</h3>
+  <pre><code>
+Región factible:
+[{x:0,y:0},{x:0,y:100},{x:33.3,y:66.7},{x:75,y:0}]
+
+Óptimo:
+[{x:0,y:100}]
+  </code></pre>
 </section>
 
 <section>
   <h3>Interpretación</h3>
   <ul>
-    <li class="fragment">La soja tiene mayor margen por hectárea.</li>
-    <li class="fragment">El presupuesto limita la expansión del maíz.</li>
-    <li class="fragment">El modelo no considera rotación ni salud del suelo.</li>
+    <li class="fragment">La soja tiene mayor margen.</li>
+    <li class="fragment">El presupuesto limita el maíz.</li>
+    <li class="fragment">El modelo no considera rotación.</li>
   </ul>
 </section>
+
+<!-- FUENTES -->
 <section>
   <h3>Fuentes de consulta</h3>
   <ul>
-    <li> Hamdy A. Taha - Investigación de operaciones (7a.Edicion)  </li>
-    <li> Bolsa de cereales - Panorama agrícola semanal <a href="https://www.bolsadecereales.com/imagenes/pass/2026-02/1133-pas202602261.pdf" target="_blank" class="button"> link</a> </li>
+    <li>Taha A Hamdy. (2012). <i>Investigación de Operaciones</i>. Pearson.</li>
+    <li>Hillier & Lieberman (2015). <i>Introducción a la Investigación de Operaciones</i>.</li>
+    <li>
+      Bolsa de Cereales (2026). Panorama Agrícola Semanal.
+      <a href="https://www.bolsadecereales.com/imagenes/pass/2026-02/1133-pas202602261.pdf"
+         target="_blank" class="button">Ver informe</a>
+    </li>
   </ul>
 </section>
+
 </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
 <script>
-Reveal.initialize({ hash: true, transition: "slide" });
+Reveal.initialize({ hash:true, transition:"slide" });
 </script>
 </body>
 </html>
